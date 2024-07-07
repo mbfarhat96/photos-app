@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Photos Clone</title>
+</head>
+<body>
+<h2>Upload Your Photo</h2>
+
+<input id="fileupload" type="file" name="fileupload">
+<button id="upload-button" onclick="uploadFile()">Upload</button>
+
+<h2>Download Photos</h2>
+
+<h2>Delete Photos</h2>
+<div id="deletePhotos">
+
+</div>
+
+<script>
+    async function uploadFile() {
+        let formData = new FormData();
+        formData.append("data", fileupload.files[0]);
+        await fetch("http://localhost:8080/photo", {
+            method: "POST",
+            body: formData
+        }).then(result => result.text())
+            .then(text => alert(text))
+    }
+
+
+</script>
+</body>
+</html>
